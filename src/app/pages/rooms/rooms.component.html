@@ -2,15 +2,15 @@
   <h1>Chat rooms</h1>
 </div>
 <div class="container mb-4 mouse-pointer">
-  <div *ngFor="let room of chatRooms; let i = index;" class="border border-dark bg-secondary pt-2 pb-2" (click)="openRoom(i)">
+  <div *ngFor="let room of chatRooms; let i = index;" class="mt-2 border border-dark bg-secondary pt-2 pb-2" (click)="openRoom(i)">
     Room {{ i+1 }}
   </div>
-</div>
-<h3>Room {{ openedRoom }}</h3>
-<div *ngFor="let message of messages">
-  {{ message }}
-</div>
-<div class="container">
+  <h3>Room {{ openedRoom }}</h3>
+  <div *ngFor="let message of chatRooms[openedRoom].messages" class="row">
+    <div class="round message float-right bg-primary p-3 mb-1">
+      <p>{{ message }}</p>
+    </div>
+  </div>
   <form [formGroup]="roomForm">
     <div class="form-group">
       <label for="text">Write message: </label>

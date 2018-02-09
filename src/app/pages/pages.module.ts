@@ -23,7 +23,7 @@ const routes: Routes = [
         },
         {
           path: 'rooms',
-          component: RoomsComponent
+          loadChildren: './rooms/rooms.module#RoomsModule'
         }, {
           path: 'notify',
           component: NotifyComponent
@@ -45,8 +45,7 @@ const routes: Routes = [
     DashboardComponent,
     NotifyComponent,
     PagesComponent,
-    PushNotificationComponent,
-    RoomsComponent,
+    PushNotificationComponent
   ],
   providers: [
     ChatService,

@@ -33,6 +33,6 @@ export class RoomsComponent implements OnInit {
   }
 
   send() {
-    console.log(this.roomForm);
+    this.chatRooms[this.openedRoom].messages.push(this.roomForm.value.message);
   }
 }
