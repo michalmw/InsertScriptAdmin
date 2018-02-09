@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Lista czatów</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary" [routerLink]="['./add']">Dodaj</button>
+    </div>
+  </div>
+</div>
+<div>
+ <app-sur-table
+  [config]="tableConfig"
+  (deleteRow)="delete($event)"></app-sur-table>
+</div>

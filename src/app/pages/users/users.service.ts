@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs/Rx';
 
 import { environment } from './../../../environments/environment';
+import { User } from './user.types';
 
 
 @Injectable()
@@ -25,14 +26,26 @@ export class UsersService {
     );
   }
 
+  delete(id: string) {
+    return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
   get() {
     return this.http.get(this.url, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
-  delete(id: string) {
-    return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
+  getOne(id: string) {
+    return this.http.get(`${this.url}/${id}`, {withCredentials: true}).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
+  update(user: User) {
+    return this.http.put(`${this.url}/${user._id}`, user, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }

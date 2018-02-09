@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from './../../shared/shared.module';
 
-import { UsersAddComponent } from './add/add.component';
+import { UsersFormComponent } from './form/form.component';
 import { UsersListComponent } from './list/list.component';
 import { UsersService } from './users.service';
 
@@ -14,14 +14,23 @@ const routes: Routes = [
   {
     path: '',
     component: UsersListComponent
-  }, {
+  },
+  {
     path: 'add',
-    component: UsersAddComponent
+    component: UsersFormComponent
+  }, {
+    path: 'edit/:id',
+    component: UsersFormComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ''
   }
 ];
 
 @NgModule({
-  declarations: [UsersListComponent, UsersAddComponent],
+  declarations: [UsersFormComponent, UsersListComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -29,6 +38,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule ],
   exports: [],
-  providers: [ UsersService],
+  providers: [ UsersService ],
 })
 export class UsersModule {}
