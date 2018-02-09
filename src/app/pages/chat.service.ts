@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
 import { WebSocketHandlerService } from './websocket.service';
 
-const CHAT_URL = 'ws://echo.websocket.org/';
+const CHAT_URL = 'wss://zniesmaczonyzbyszek.herokuapp.com/';
 
 export interface Message {
   author: string,
@@ -21,7 +21,7 @@ export class ChatService {
         return {
           author: data.author,
           message: data.message
-        }
+        };
       });
   }
 }

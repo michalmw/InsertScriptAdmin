@@ -27,6 +27,9 @@ const routes: Routes = [
         }, {
           path: 'notify',
           component: NotifyComponent
+        }, {
+          path: 'companys',
+          loadChildren: './companys/companys.module#CompanysModule'
         }
       ]
     }
