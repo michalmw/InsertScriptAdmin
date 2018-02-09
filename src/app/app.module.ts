@@ -1,3 +1,4 @@
+import { AppService } from './app.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,7 +15,7 @@ const routes: Routes = [
         loadChildren: './login-page/login-page.module#LoginPageModule'
       },
       {
-        path: '',
+        path: 'app',
         loadChildren: './pages/pages.module#PagesModule'
       }
     ]
@@ -28,7 +29,7 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ AppService],
   bootstrap: [AppComponent]
 })
 

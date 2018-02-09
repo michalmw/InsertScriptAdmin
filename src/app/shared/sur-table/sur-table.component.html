@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>L.p.</th>
+        <th scope="col" *ngFor="let column of config?.columns">
+          {{column.column}}
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of config?.data; let i = index">
+        <td scope="row">{{i+1}}</td>
+        <td *ngFor="let column of config?.columns">
+          {{row[column.name] }}
+        </td>
+        <td>
+          <button type="button" (click)="delete(row._id)" class="btn btn-success btn-sm">Edit</button>
+          <button type="button" (click)="delete(row._id)" class="btn btn-danger btn-sm">X</button>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>

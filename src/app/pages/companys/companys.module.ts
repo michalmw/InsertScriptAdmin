@@ -1,3 +1,5 @@
+import { SharedModule } from './../../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -32,6 +34,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   exports: [],

@@ -1,23 +1,24 @@
+import { AppService } from './../../app.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/Rx';
 
 import { environment } from './../../../environments/environment';
-import { AppService } from './../../app.service';
-
 
 
 @Injectable()
-export class CompanyService {
-
-  url = `${environment.url}/api/company`;
+export class UsersService {
+  url = `${environment.url}/api/user`;
   constructor(private http: HttpClient,
     private appService: AppService) {
-
   }
 
-  add(company) {
-    return this.http.post(this.url, company).pipe(
+
+  add(user) {
+    return this.http.post(this.url, user).pipe(
       catchError(this.appService.handleError)
     );
   }
