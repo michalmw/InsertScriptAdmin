@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {PushNotificationComponent} from './nx.component';
+import { PushNotificationComponent } from './nx.component';
 
 @Component({
   selector: 'app-notify',
   templateUrl: './notify.component.html'
 
 })
-export class NameComponent implements OnInit {
+export class NotifyComponent implements OnInit {
   constructor() { }
   public notification: any = {
     show: false,
