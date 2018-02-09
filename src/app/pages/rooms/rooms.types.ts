@@ -5,19 +5,18 @@ export class Room {
     constructor(id) {
         this._id = id;
         this.messages = [];
-        this.messages.push({
-            sender: 1,
-            text: 'tresc'
-        });
+        this.messages.push(new Message(1, 'tresc'));
     }
 }
 
 export class Message {
     sender: number;
     text: string;
+    createDate: Date;
 
     constructor(sender, text) {
         this.sender = sender;
         this.text = text;
+        this.createDate = new Date();
     }
 }

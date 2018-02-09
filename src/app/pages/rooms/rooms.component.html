@@ -2,24 +2,21 @@
   <div class="col-3">
     <nav class="nav flex-column">
       <a class="nav-link active" href="#">Active</a>
-      <a class="nav-link" *ngFor="let room of chatRooms; let i = index;" (click)="openRoom(i)">Room {{ i+1 }}</a>
+      <a class="nav-link" *ngFor="let room of chatRooms; let i = index;" (click)="openRoom(i)">Room {{ i }}</a>
     </nav>
   </div>
   <div class="col-9">
       <h3>Room {{ openedRoom }}</h3>
-      <!-- <div class="row"> -->
-          <!-- <p class="text-center">Center aligned text on all viewport sizes.</p> -->
         <div *ngFor="let message of chatRooms[openedRoom].messages">
             <p [ngClass]="{'text-left': message.sender === 0, 'text-right': message.sender === 1}">
-              <span>Sender: {{message.sender}}</span> <br />
+              <span>Sender: {{message.sender}} -- {{message.createDate | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
               {{ message.text }}</p>
         </div>
-         <hr>
-       <form [formGroup]="roomForm">
-         
-         <div class="form-group">
+        <hr>
+        <form [formGroup]="roomForm">
+          <div class="form-group">
             <label for="text">Write message: </label>
-            <textarea class="form-control" id="text" rows="3" formControlName="message"></textarea>
+            <textarea class="form-control" id="text" rows="3" (keyup.enter)="send()" formControlName="message"></textarea>
           </div>
           <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>
         </form>
