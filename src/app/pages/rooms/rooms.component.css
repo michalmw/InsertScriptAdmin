@@ -37,3 +37,7 @@
 .message.float-right {
     background: #c7eafc;
 }
+.menu-with-rooms {
+    position: fixed;
+    top: 70px;
+}
