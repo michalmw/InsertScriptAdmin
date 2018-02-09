@@ -1,3 +1,21 @@
-<p>
-  rooms works!
-</p>
+<div class="container bg-primary text-center">
+  <h1>Chat rooms</h1>
+</div>
+<div class="container mb-4 mouse-pointer">
+  <div *ngFor="let room of chatRooms; let i = index;" class="border border-dark bg-secondary pt-2 pb-2" (click)="openRoom(i)">
+    Room {{ i+1 }}
+  </div>
+</div>
+<h3>Room {{ openedRoom }}</h3>
+<div *ngFor="let message of messages">
+  {{ message }}
+</div>
+<div class="container">
+  <form [formGroup]="roomForm">
+    <div class="form-group">
+      <label for="text">Write message: </label>
+      <textarea class="form-control" id="text" rows="3" formControlName="message"></textarea>
+    </div>
+    <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>
+  </form>
+</div>
