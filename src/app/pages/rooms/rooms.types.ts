@@ -1,24 +1,25 @@
 export class Room {
-    _id: string;
-    messages: Message[];
-    gateway: number;
+    _id?: string;
+    messages?: Message[];
+    gateway?: number;
 
     constructor(id) {
         this._id = id;
         this.gateway = 1;
         this.messages = [];
-        this.messages.push(new Message(1, 'tresc'));
     }
 }
 
 export class Message {
-    sender: number;
-    text: string;
-    createDate: Date;
+    type: string;
+    message: string;
+    timestamp: Date;
+    sessionId: string;
 
-    constructor(sender, text) {
-        this.sender = sender;
-        this.text = text;
-        this.createDate = new Date();
+    constructor(type, message, sessionId) {
+        this.sessionId = sessionId;
+        this.type = type;
+        this.message = message;
+        this.timestamp = new Date();
     }
 }

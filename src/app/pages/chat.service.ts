@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs/Rx';
+import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { WebSocketHandlerService } from './websocket.service';
 
 import { environment } from './../../environments/environment';
+import { Room } from './rooms/rooms.types';
 
 
 const CHAT_URL = environment.websocketUrl;
@@ -14,17 +15,20 @@ export interface Message {
 
 @Injectable()
 export class ChatService {
-  public messages: Subject<Message>;
+  public rooms: Subject<Room[]>;
 
   constructor(wsService: WebSocketHandlerService) {
-    this.messages = <Subject<Message>>wsService
+     this.rooms = <Subject<Room[]>>wsService
       .connect(CHAT_URL)
-      .map((response: MessageEvent): Message => {
+      .map((response: MessageEvent): any => {
         let data = JSON.parse(response.data);
-        return {
-          author: data.author,
-          message: data.message
-        };
+        console.log('Datattt', data);
+        console.log('Data', data['rooms']);
+        return data['rooms'];
       });
+  }
+
+  getRooms() {
+    return this.rooms;
   }
 }

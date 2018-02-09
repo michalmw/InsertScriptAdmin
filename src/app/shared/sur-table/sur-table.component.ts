@@ -3,7 +3,11 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 
 @Component({
   selector: 'app-sur-table',
-  templateUrl: './sur-table.component.html'
+  templateUrl: './sur-table.component.html',
+  styles: [`
+  .td-action .btn-info {
+    margin-right: 10px;
+  }`]
 })
 export class SurTableComponent implements OnInit {
 

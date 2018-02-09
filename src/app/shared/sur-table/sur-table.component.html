@@ -14,9 +14,9 @@
         <td *ngFor="let column of config?.columns" [routerLink]="['./edit/', row._id]">
           {{row[column.name] }}
         </td>
-        <td>
-          <button type="button" [routerLink]="['./edit/', row._id]" class="btn btn-success btn-sm">Edit</button>
-          <button type="button" (click)="delete(row._id)" class="btn btn-danger btn-sm">X</button>
+        <td class="td-action">
+          <button type="button" (click)="delete(row._id)" class="btn btn-danger btn-sm float-right"><i class="fa fa-trash"></i></button>
+          <button type="button" [routerLink]="['./edit/', row._id]" class="btn btn-info btn-sm float-right"><i class="fa fa-edit"></i></button>
         </td>
       </tr>
      

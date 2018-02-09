@@ -27,20 +27,13 @@ export class NotifyComponent {
   constructor(
     private chatService: ChatService
   ) {
-    chatService.messages.subscribe(msg => {
-      console.log("Response from websocket: ", msg);
-    });
   }
-
- 
-
- 
 
   close() {}
 
   sendMsg() {
     console.log('new message from client to websocket: ', this.message);
-    this.chatService.messages.next(this.message);
+    // this.chatService.messages.next(this.message);
     this.message.message = '';
   }
   

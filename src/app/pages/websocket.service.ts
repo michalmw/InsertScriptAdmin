@@ -36,4 +36,9 @@ export class WebSocketHandlerService {
     return Rx.Subject.create(observer, observable);
   }
 
+  sendData(date) {
+    console.log('Date', date);
+    return this.subject.next(date);
+  }
+
 }

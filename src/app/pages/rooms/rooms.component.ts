@@ -1,3 +1,5 @@
+import { WebSocketHandlerService } from './../websocket.service';
+import { ChatService } from './../chat.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -14,20 +16,25 @@ export class RoomsComponent implements OnInit {
   openedRoom = 1;
   roomForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    for (let i = 0; i < 9; i++) {
-      this.chatRooms.push(new Room(i));
-    }
+  constructor(private fb: FormBuilder,
+  private chatService: ChatService,
+  private ws: WebSocketHandlerService) {
   }
 
   ngOnInit() {
     this.buildForm();
+    this.chatService.getRooms().subscribe(
+      res => {
+        this.chatRooms = res;
+        console.log('Res xD', res);
+      });
   }
 
   buildForm() {
     this.roomForm = this.fb.group({
-      sender: 0,
-      message: ''
+      type: 'fromUser',
+      message: '',
+      sessionId: '123'
     });
   }
 
@@ -36,7 +43,10 @@ export class RoomsComponent implements OnInit {
   }
 
   send() {
-    this.chatRooms[this.openedRoom].messages.push(new Message(this.roomForm.value.sender, this.roomForm.value.message));
+    const message = new Message(this.roomForm.value.type, this.roomForm.value.message,
+      this.chatRooms[this.openedRoom].messages[0].sessionId);
+    this.ws.sendData(message);
+    this.chatRooms[this.openedRoom].messages.push(message);
     this.buildForm();
   }
 }
