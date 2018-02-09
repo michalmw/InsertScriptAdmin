@@ -7,6 +7,10 @@
     </div>
   </div>
   <div>
-    // Tutaj formularz do dodawania listy
+    <form>
+      <input type="text" name="nazwa" [(ngModel)]="company.name">
+      <input type="text" name="description" [(ngModel)]="company.description">
+      <button (click)="save()">Dodaj</button>
+    </form>
   </div>
   

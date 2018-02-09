@@ -1,9 +1,12 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CompanyListComponent } from './list/list.component';
 import { CompanyAddComponent } from './add/add.component';
+import { CompanyService } from './company.service';
+import { CompanyListComponent } from './list/list.component';
+
 
 const routes: Routes = [
   {
@@ -28,9 +31,12 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [],
-  providers: [],
+  providers: [
+    CompanyService
+  ],
 })
 export class CompanysModule {}

@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
 import { WebSocketHandlerService } from './websocket.service';
 
-const CHAT_URL = 'wss://zniesmaczonyzbyszek.herokuapp.com/';
+import { environment } from './../../environments/environment';
+
+
+const CHAT_URL = environment.websocketUrl;
 
 export interface Message {
   author: string,
