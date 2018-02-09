@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -15,7 +16,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPageComponent]
+  declarations: [LoginPageComponent],
+  providers: [
+    LoginService
+  ]
 })
 
 export class LoginPageModule { }

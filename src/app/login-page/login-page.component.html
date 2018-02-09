@@ -1,3 +1,19 @@
-<p>
-  login-page works!
-</p>
+
+<div id="main-container">
+  <div id="container">
+    <div id="logo_bar">
+      <img id="logo" src="https://surprise.design/img/2015/04/5-biale.png" alt="logo">
+    </div>
+    <div id="form_box">
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <input [(ngModel)]="user.email" type="email" placeholder="Twój email"><br />
+        <input [(ngModel)]="user.password" type="password" placeholder="Twoje hasło"><br />
+        <input type="submit" value="Zaloguj"><br />
+      </form>
+    </div>
+    </div>
+    <div id="credits_box">
+    Designed by Surprise.Design
+    </div>
+</div>
+  
