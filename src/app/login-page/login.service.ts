@@ -15,12 +15,6 @@ export class LoginService {
   }
 
   login(user) {
-    // fetch(`${this.url}`, {
-    //   method: 'POST',
-    //   credentials:'include',
-    //   headers: { 'Content-Type': 'application/json'}
-    //   body: JSON.stringify(user)
-    // }).then(x=>x.text()).then(console.log)
     return this.http.post(this.url, user, {withCredentials: true}).pipe(
       catchError(this.handleError)
     );

@@ -9,14 +9,16 @@ import { Message, Room } from './rooms.types';
   styleUrls: ['./rooms.component.css']
 })
 export class RoomsComponent implements OnInit {
-  room1: Room = {_id: '1', messages: []};
-  room2: Room = {_id: '2', messages: []};
-  room3: Room = {_id: '3', messages: []};
-  chatRooms: Array<Room> = [this.room1, this.room2, this.room3];
+  chatRooms: Room[] = [];
+
   openedRoom = 1;
   roomForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    for (let i = 0; i < 9; i++) {
+      this.chatRooms.push(new Room(i));
+    }
+  }
 
   ngOnInit() {
     this.buildForm();
@@ -24,6 +26,7 @@ export class RoomsComponent implements OnInit {
 
   buildForm() {
     this.roomForm = this.fb.group({
+      sender: 0,
       message: ''
     });
   }
@@ -33,6 +36,7 @@ export class RoomsComponent implements OnInit {
   }
 
   send() {
-    this.chatRooms[this.openedRoom].messages.push(this.roomForm.value.message);
+    this.chatRooms[this.openedRoom].messages.push(new Message(this.roomForm.value.sender, this.roomForm.value.message));
+    this.roomForm.reset();
   }
 }
