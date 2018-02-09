@@ -6,27 +6,37 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PushNotificationComponent } from './notify/nx.component';
+import { PagesComponent } from './pages.component';
+import { RoomsComponent } from './rooms/rooms.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
     {
       path: '',
-      component: DashboardComponent
-    },
-    {
-      path: 'notify',
-      component: NameComponent
+      component: PagesComponent,
+      children: [
+        {
+          path: '',
+          component: DashboardComponent
+        },
+        {
+          path: 'rooms',
+          component: RoomsComponent
+        }
+      ]
     }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ],
-  declarations: [DashboardComponent,
-    NameComponent,
-    PushNotificationComponent
+  declarations: [
+    DashboardComponent,
+    PagesComponent,
+    RoomsComponent
   ]
 })
 
