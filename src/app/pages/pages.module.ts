@@ -35,6 +35,9 @@ const routes: Routes = [
         }, {
           path: 'users',
           loadChildren: './users/users.module#UsersModule'
+        }, {
+          path: 'configure-chats',
+          loadChildren: './configure-chats/configure-chats.module#ConfigureChatsModule'
         }
       ]
     }
