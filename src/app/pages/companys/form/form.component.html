@@ -2,7 +2,7 @@
     <h1 class="h2">Dodawanie firmy</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-        <button class="btn btn-sm btn-outline-secondary" [routerLink]="['../']">Wróć na liste</button>
+        <button class="btn btn-sm btn-outline-secondary" [routerLink]="['/app/companys']">Wróć na liste</button>
       </div>
     </div>
   </div>
@@ -10,7 +10,9 @@
     <form>
       <input type="text" name="nazwa" [(ngModel)]="company.name">
       <input type="text" name="description" [(ngModel)]="company.description">
-      <button (click)="save()">Dodaj</button>
+      <button (click)="save()">
+        {{ id ? 'Zapisz' : 'Dodaj'}}
+      </button>
     </form>
   </div>
   

@@ -1,3 +1,5 @@
+import { AppService } from './../app.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appService: AppService,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.appService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

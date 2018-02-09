@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [UsersListComponent, UsersAddComponent],
-  imports: [ CommonModule, HttpClientModule, RouterModule.forChild(routes), SharedModule ],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forChild(routes),
+    SharedModule ],
   exports: [],
   providers: [ UsersService],
 })

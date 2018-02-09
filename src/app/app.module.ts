@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'app',
         loadChildren: './pages/pages.module#PagesModule'
+      }, {
+        path: '',
+        redirectTo: 'app',
+        pathMatch: 'full'
       }
     ]
   }];
@@ -27,6 +32,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [ AppService],

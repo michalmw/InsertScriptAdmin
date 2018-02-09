@@ -1,3 +1,4 @@
+import { Company } from './company.types';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -16,14 +17,26 @@ export class CompanyService {
 
   }
 
-  add(company) {
+  add(company: Company) {
     return this.http.post(this.url, company).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
+  update(company: Company) {
+    return this.http.put(`${this.url}/${company._id}`, company).pipe(
       catchError(this.appService.handleError)
     );
   }
 
   get() {
     return this.http.get(this.url).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
+  getOne(id: string) {
+    return this.http.get(`${this.url}/${id}`).pipe(
       catchError(this.appService.handleError)
     );
   }

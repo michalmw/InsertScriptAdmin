@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CompanyAddComponent } from './add/add.component';
+import { CompanyFormComponent } from './form/form.component';
 import { CompanyService } from './company.service';
 import { CompanyListComponent } from './list/list.component';
 
@@ -17,7 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: CompanyAddComponent
+    component: CompanyFormComponent
+  }, {
+    path: 'edit/:id',
+    component: CompanyFormComponent
   },
   {
     path: '',
@@ -28,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CompanyAddComponent,
+    CompanyFormComponent,
     CompanyListComponent,
   ],
   imports: [
@@ -40,7 +43,6 @@ const routes: Routes = [
   ],
   exports: [],
   providers: [
-    CompanyService
   ],
 })
 export class CompanysModule {}
