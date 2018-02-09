@@ -24,11 +24,11 @@ export class UsersListComponent {
   tableConfig = {
     columns: [
       {
-        column: 'Nazwa',
-        name: 'name'
+        column: 'Email',
+        name: 'email'
       }, {
-        column: 'Opis',
-        name: 'description'
+        column: 'Typ',
+        name: 'type'
       }
     ],
     data: undefined
