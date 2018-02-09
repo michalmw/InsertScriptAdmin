@@ -18,31 +18,31 @@ export class CompanyService {
   }
 
   add(company: Company) {
-    return this.http.post(this.url, company).pipe(
+    return this.http.post(this.url, company, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
   update(company: Company) {
-    return this.http.put(`${this.url}/${company._id}`, company).pipe(
+    return this.http.put(`${this.url}/${company._id}`, company, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
   get() {
-    return this.http.get(this.url).pipe(
+    return this.http.get(this.url, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
   getOne(id: string) {
-    return this.http.get(`${this.url}/${id}`).pipe(
+    return this.http.get(`${this.url}/${id}`, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
   delete(id: string) {
-    return this.http.delete(`${this.url}/${id}`).pipe(
+    return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
