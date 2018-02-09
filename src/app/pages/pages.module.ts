@@ -6,8 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PushNotificationComponent } from './notify/nx.component';
 import { PagesComponent } from './pages.component';
+import { ChatService } from './chat.service';
 import { RoomsComponent } from './rooms/rooms.component';
 import { NotifyComponent } from './notify/notify.component';
+import { WebSocketHandlerService } from './websocket.service';
 import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
@@ -42,6 +44,10 @@ const routes: Routes = [
     PagesComponent,
     PushNotificationComponent,
     RoomsComponent,
+  ],
+  providers: [
+    ChatService,
+    WebSocketHandlerService
   ]
 })
 
