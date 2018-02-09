@@ -9,13 +9,10 @@ import { PushNotificationComponent } from './nx.component';
 })
 export class NotifyComponent {
 
-  constructor(
-    private chatService: ChatService
-  ) {
-    chatService.messages.subscribe(msg => {
-      console.log("Response from websocket: ", msg);
-    });
-  }
+  private message = {
+    author: 'tutorialedge',
+    message: 'this is a test message'
+  };
 
   public notification: any = {
     show: false,
@@ -27,14 +24,24 @@ export class NotifyComponent {
     }
   };
 
-  private message = {
-    author: 'tutorialedge',
-    message: 'this is a test message'
+  constructor(
+    private chatService: ChatService
+  ) {
+    chatService.messages.subscribe(msg => {
+      console.log("Response from websocket: ", msg);
+    });
   }
+
+ 
+
+ 
+
+  close() {}
 
   sendMsg() {
     console.log('new message from client to websocket: ', this.message);
     this.chatService.messages.next(this.message);
     this.message.message = '';
-	}
+  }
+  
 }

@@ -94,7 +94,8 @@ export class PushNotificationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public closeAll (): void {
-    Notification.close();
+    // TODO: Check this why not working
+    // Notification.close();
   }
 
   attachEventHandlers (notification): void {

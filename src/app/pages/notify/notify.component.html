@@ -5,6 +5,7 @@
     [body]="notification.body"
     [icon]="notification.icon"
     [closeDelay]="notification.closeDelay"
+    (cliose)="close()"
     (action)="notification.action($event)">
   </app-push-notification>
   
