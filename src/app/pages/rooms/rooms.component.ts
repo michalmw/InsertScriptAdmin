@@ -32,11 +32,11 @@ export class RoomsComponent implements OnInit {
   }
 
   openRoom(index: number) {
-    this.openedRoom = index + 1;
+    this.openedRoom = index;
   }
 
   send() {
     this.chatRooms[this.openedRoom].messages.push(new Message(this.roomForm.value.sender, this.roomForm.value.message));
-    this.roomForm.reset();
+    this.buildForm();
   }
 }

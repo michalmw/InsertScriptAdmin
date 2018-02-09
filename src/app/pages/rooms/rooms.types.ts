@@ -1,9 +1,11 @@
 export class Room {
     _id: string;
     messages: Message[];
+    gateway: number;
 
     constructor(id) {
         this._id = id;
+        this.gateway = 1;
         this.messages = [];
         this.messages.push(new Message(1, 'tresc'));
     }
