@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { LoginService } from './login.service';
 
 @Component({
@@ -13,7 +15,8 @@ export class LoginPageComponent implements OnInit {
     password: undefined
   }
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,7 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         res => {
           console.log('Res', res);
+          this.router.navigate(['/app']);
         },
         err => {
           console.error('Error typu:', err);

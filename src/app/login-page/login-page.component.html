@@ -6,8 +6,8 @@
     </div>
     <div id="form_box">
       <form (ngSubmit)="onSubmit()" #form="ngForm">
-        <input [(ngModel)]="user.email" type="email" placeholder="Twój email"><br />
-        <input [(ngModel)]="user.password" type="password" placeholder="Twoje hasło"><br />
+        <input [(ngModel)]="user.email" name="email" type="email" placeholder="Twój email"><br />
+        <input [(ngModel)]="user.password" name="password" type="password" placeholder="Twoje hasło"><br />
         <input type="submit" value="Zaloguj"><br />
       </form>
     </div>
