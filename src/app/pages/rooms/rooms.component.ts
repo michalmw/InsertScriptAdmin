@@ -13,20 +13,8 @@ import { Message, Room } from './rooms.types';
 export class RoomsComponent implements OnInit {
   chatRooms: Room[] = [];
 
-  openedRoom;
+  openedRoom: number = null;
   roomForm: FormGroup;
-
-  public notification: any = {
-    show: false,
-    title: 'New Angular 2 Library!',
-    body: 'ng2-notifications',
-    icon: 'https://goo.gl/3eqeiE',
-    action: function () {
-      window.open('https://github.com/alexcastillo/ng2-notifications');
-    }
-  };
-
-  @ViewChild('showmessage') showmessage: ElementRef;
 
   constructor(private fb: FormBuilder,
   private chatService: ChatService,
@@ -45,18 +33,7 @@ export class RoomsComponent implements OnInit {
       this.chatRooms = res;
     });
 
-    // Nowa wiadomość - powiadomienie
-    this.chatService.getLastMassage().subscribe(
-      data => {
-        if (data.message) {
-          this.notification = {
-            title: 'Nowa wiadomość!',
-            body: data.message
-          };
-          this.showmessage.nativeElement.click();
-        }
-      }
-    );
+    
     this.buildForm();
   }
 
@@ -71,6 +48,8 @@ export class RoomsComponent implements OnInit {
   openRoom(index: number) {
     this.openedRoom = index;
   }
+
+  close() {}
 
   send() {
     const message = new Message(this.roomForm.value.type, this.roomForm.value.message,
