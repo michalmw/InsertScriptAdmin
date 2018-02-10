@@ -20,7 +20,9 @@ export class ConfigureChatsFormComponent implements OnInit {
     new Colors('Kolor wiadomości', '#3a5857'),
 
   ]
+  
   companies: Array<Company> = [];
+  displayCode = '';
   gateway = new Gateway();
   id: string;
   sideArray = [
@@ -35,7 +37,8 @@ export class ConfigureChatsFormComponent implements OnInit {
     {value: '14px'},
     {value: '15px'},
     {value: '16px'}
-  ]
+  ];
+  codeMessage = ''
 
   constructor(
     private acRouter: ActivatedRoute,
@@ -52,6 +55,7 @@ export class ConfigureChatsFormComponent implements OnInit {
           this.gateway = gateway
           this.gateway.colors ? this.chatColorsArray = gateway.colors : this.chatColorsArray= this.chatColorsArray; 
           this.gateway.side === 'left' ? this.gateway.side = gateway.side : this.gateway.side = 'right';
+          this.generateCode();
         }
       );
     }
@@ -65,9 +69,29 @@ export class ConfigureChatsFormComponent implements OnInit {
     );
   }
 
+  copyCode() {
+    var copyText = <any>document.getElementById("generated-code");
+    copyText.select();
+    document.execCommand("Copy");
+  }
+
+  generateCode() {
+    this.codeMessage = `let style = getComputedStyle(document.body);
+    const setColorVariables = (variable, value) => { document.documentElement.style.setProperty(variable, value); }
+
+    var my_awesome_script = document.createElement('script');
+    my_awesome_script.setAttribute('src','http://example.com/site.js');
+    document.head.appendChild(my_awesome_script);
+    
+    setColorVariables('--bars-colors-sur--chat', '${this.chatColorsArray[0].color}');
+    setColorVariables('--chat-area-bg-color-sur--chat', '${this.chatColorsArray[1].color}');
+    setColorVariables('--chat-area-message-bg-color-sur--chat', '${this.chatColorsArray[2].color}');
+    setColorVariables('--chat-area-font-color-sur--chat', '#8BC34A');
+    setColorVariables('--font-size-message-sur-chat', '${this.gateway.fontSize}');`
+  }
+
   save() {
     this.gateway['colors'] = this.chatColorsArray;
-    console.log(this.gateway)
     if (this.id) {
       this.configureChatsService.update(this.gateway).subscribe(
         (res) => this.router.navigate(['/app/configure-chats'])
