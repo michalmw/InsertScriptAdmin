@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-room-view',
   template: `
-    <div class="message-content">
+    <div class="message-content"  #list [scrollTop]="list.scrollHeight">
       <div *ngFor="let message of messages" style="overflow: hidden;">
           <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
             <span class="float-left">Sender: {{message?.sender}}</span>
@@ -27,15 +27,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styles: [
     `
     .message-content {
-      margin-bottom: 200px;
+      overflow-y: scroll;
+      height: 80vh;
     }
-    .bottom-fixed {
-      position: fixed;
-      background: #fff;
-      bottom: 10px;
-      right: 10px;
-      width: 60vw;
-    }`
+    `
   ]
 })
 export class RoomViewComponent implements OnInit {

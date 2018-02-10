@@ -1,3 +1,5 @@
+import { Company } from './../../companys/company.types';
+import { CompanyService } from './../../companys/company.service';
 import { Gateway } from './../../configure-chats/configure-chats.types';
 import { UsersService } from './../users.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,11 +16,13 @@ import { ConfigureChatsService } from '../../configure-chats/configure-chats.ser
 export class UsersFormComponent implements OnInit {
 
   id: string;
+  companys: Company[];
   user = new User();
-  gateway: Gateway[];
+  gateway: Gateway[] = [];
 
   constructor(
     private acRouter: ActivatedRoute,
+    private companysService: CompanyService,
     private configurateChats: ConfigureChatsService,
     private usersService: UsersService,
     private router: Router
@@ -28,12 +32,17 @@ export class UsersFormComponent implements OnInit {
       this.usersService.getOne(this.id).subscribe(
         (user: User) => {
           delete user.password;
+          user.companyId = user.companyId['_id'];
           this.user = user;
         }
       );
     }
     this.configurateChats.get().subscribe(
       res => this.gateway = res
+    );
+
+    this.companysService.get().subscribe(
+      res => this.companys = res
     );
   }
 

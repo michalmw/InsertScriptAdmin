@@ -3,9 +3,11 @@ export class User {
   email: string;
   password: string;
   gateway?: Array<string>;
+  companyId: string;
 
   constructor() {
     this.email = '';
     this.password = '';
+    this.companyId = '';
   }
 }

@@ -7,7 +7,7 @@
   </div>
   <div class="col-10">
     <div *ngIf="openedRoom != null; else chooseRoom">
-      <app-room-view
+      <app-room-view #scrollMe style="overflow: scroll; height: xyz;"
           [messages]="chatRooms[openedRoom]?.messages"
           [openedRoom]="openedRoom"
           (sendData)="sendData($event)"

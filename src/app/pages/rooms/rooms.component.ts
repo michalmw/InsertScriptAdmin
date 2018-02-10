@@ -15,6 +15,7 @@ export class RoomsComponent implements OnInit {
 
   openedRoom: number = null;
   roomForm: FormGroup;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor(private chatService: ChatService,
   private ws: WebSocketHandlerService) {
@@ -27,8 +28,8 @@ export class RoomsComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+  }
 
   openRoom(index: number) {
     this.openedRoom = index;

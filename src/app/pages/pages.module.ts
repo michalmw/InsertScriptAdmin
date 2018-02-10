@@ -53,7 +53,7 @@ const routes: Routes = [
   providers: [
     ChatService,
     CompanyService,
-    ConfigureChatsService,    
+    ConfigureChatsService,
     WebSocketHandlerService
   ]
 })
