@@ -16,30 +16,10 @@ export class RoomsComponent implements OnInit {
   openedRoom: number = null;
   roomForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-  private chatService: ChatService,
+  constructor(private chatService: ChatService,
   private ws: WebSocketHandlerService) {
 
-    this.getAllData();
-  }
-
-  ngOnInit() {
-
-    this.buildForm();
-  }
-
-  buildForm() {
-    this.roomForm = this.fb.group({
-      type: 'fromUser',
-      message: '',
-      sessionId: '123'
-    });
-  }
-
-  getAllData() {
-    
- 
-      // obieranie Wszystkich Roomów on start
+    // obieranie Wszystkich Roomów on start
     this.chatService.getCRooms().subscribe(
       res => {
         console.log('CRooms xD', res);
@@ -47,17 +27,17 @@ export class RoomsComponent implements OnInit {
       });
   }
 
+  ngOnInit() {}
+
 
   openRoom(index: number) {
     this.openedRoom = index;
   }
 
+  sendData(event) {
+    console.log('W send event', event);
+    this.ws.sendData(event);
+    this.chatRooms[this.openedRoom].messages.push(event);
 
-  send() {
-    const message = new Message(this.roomForm.value.type, this.roomForm.value.message,
-      this.chatRooms[this.openedRoom].messages[0].sessionId);
-    this.ws.sendData(message);
-    this.chatRooms[this.openedRoom].messages.push(message);
-    this.buildForm();
   }
 }

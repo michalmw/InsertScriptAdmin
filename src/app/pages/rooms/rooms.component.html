@@ -1,34 +1,17 @@
 <div class="row">
   <div class="col-2">
-    <nav class="nav flex-column menu-with-rooms">
-      <a class="nav-link" 
-        [class.active]="i == openedRoom" 
-        *ngFor="let room of chatRooms; let i = index;" 
-        (click)="openRoom(i)">
-        Room {{ room?.name }} <br>
-        <small>Bramka: {{room.gateId}}</small>
-      </a>
-    </nav>
+    <app-list-name 
+      [chatRooms]="chatRooms"
+      [openedRoom]="openedRoom"
+      (openRoom)="openRoom($event)"></app-list-name>
   </div>
   <div class="col-10">
     <div *ngIf="openedRoom != null; else chooseRoom">
-      <h3>Room {{ openedRoom+1 }}</h3>
-      <div *ngFor="let message of chatRooms[openedRoom]?.messages" style="overflow: hidden;">
-          <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
-            <span class="float-left">Sender: {{message?.sender}}</span>
-            <span class="float-right">{{message.timestamp | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
-            <p>
-              {{ message.message }}
-            </p>
-          </div>
-      </div>
-      <hr>
-      <form [formGroup]="roomForm">
-        <div class="form-group">
-          <textarea placeholder="Twoja wiadomość.." class="form-control" id="text" rows="3" (keyup.enter)="send()" formControlName="message"></textarea>
-        </div>
-        <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>
-      </form>
+      <app-room-view
+          [messages]="chatRooms[openedRoom]?.messages"
+          [openedRoom]="openedRoom"
+          (sendData)="sendData($event)"
+        ></app-room-view>
     </div>
     <ng-template #chooseRoom>
       <p>Wybierz pokój z listy aby otworzyć historie wiadomości...</p>

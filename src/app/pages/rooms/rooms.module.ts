@@ -1,3 +1,5 @@
+import { RoomViewComponent } from './view/view.component';
+import { ListNameComponent } from './list-name/list-name.component';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,6 +22,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RoomsComponent]
+  declarations: [RoomsComponent, ListNameComponent, RoomViewComponent]
 })
 export class RoomsModule { }

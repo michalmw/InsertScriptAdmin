@@ -10,6 +10,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
+  email;
   public notification: any = {
     show: false,
     title: 'New Angular 2 Library!',
@@ -26,11 +27,13 @@ export class PagesComponent implements OnInit {
     private appService: AppService,
     private chatService: ChatService,
     private router: Router) {
-
+    
+      this.email = localStorage.getItem('loginAs');
     // Łączeinie z websocketem
-    this.chatService.getRooms().subscribe(
-      res => console.log);
-      
+    this.chatService.getData().subscribe(
+      res => console.log('A dostaje tutaj zmianyt :D', res)
+    );
+
     // Nowa wiadomość - powiadomienie
     this.chatService.getLastMassage().subscribe(
       data => {

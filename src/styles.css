@@ -94,3 +94,32 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+.nav-link.active {
+  color: red;
+}
+.nav-link {
+  cursor: pointer;
+}
+.message {
+  max-width: 50%;
+  min-width: 500px;
+  border-radius: 6px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  
+}
+.message p {
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0px;
+}
+.message.float-left {
+  background: #ffe6cb;
+}
+.message.float-right {
+  background: #c7eafc;
+}
+.menu-with-rooms {
+  position: fixed;
+  top: 70px;
+}

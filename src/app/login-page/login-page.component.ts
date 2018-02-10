@@ -36,7 +36,8 @@ export class LoginPageComponent implements OnInit {
       this.loginService.login(this.user)
       .subscribe(
         res => {
-          console.log('Res', res);
+          console.log('Res', res.user);
+          localStorage.setItem('loginAs', res.user.email);
           // I don;t know why not working but only when reload page working
             this.router.navigate(['/app']);
           // TODO: Check why?
