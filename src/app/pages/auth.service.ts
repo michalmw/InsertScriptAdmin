@@ -1,5 +1,7 @@
-import { BehaviorSubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +14,7 @@ export class AuthService {
 
   private isLogged = new BehaviorSubject(false);
 
-  constructor() {
+  constructor(private router: Router) {
 
     this.user.next({
       email: localStorage.getItem('email') || '',
@@ -26,6 +28,7 @@ export class AuthService {
 
   setUser(user) {
     this.user.next(user);
+    this.router.navigate(['/app']);
   }
 
   checkIsLogged() {

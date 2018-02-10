@@ -41,7 +41,6 @@ export class LoginPageComponent implements OnInit {
           localStorage.setItem('type', res.user.type);
           localStorage.setItem('_id', res.user._id);
           this.authService.setUser(res.user);
-          this.router.navigate(['/app']);
         },
         err => {
           console.error('Error typu:', err);
