@@ -10,9 +10,9 @@ import { Message, Room } from './rooms.types';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
-  chatRooms: Room[] = [];
+export class RoomsComponent {
 
+  chatRooms: Room[] = [];
   openedRoom: number = null;
   roomForm: FormGroup;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
@@ -28,17 +28,12 @@ export class RoomsComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-  }
-
   openRoom(index: number) {
     this.openedRoom = index;
   }
 
   sendData(event) {
-    console.log('W send event', event);
     this.ws.sendData(event);
     this.chatRooms[this.openedRoom].messages.push(event);
-
   }
 }

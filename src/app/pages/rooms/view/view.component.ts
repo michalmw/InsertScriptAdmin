@@ -5,7 +5,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-room-view',
   template: `
-    <div class="message-content"  #list [scrollTop]="list.scrollHeight">
+    <div class="message-content" #list [scrollTop]="list.scrollHeight">
       <div *ngFor="let message of messages" style="overflow: hidden;">
           <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
             <span class="float-left">Sender: {{message?.sender}}</span>
@@ -18,7 +18,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     </div>
     <form [formGroup]="roomForm" class="bottom-fixed">
       <div class="form-group">
-        <textarea placeholder="Twoja wiadomość.." class="form-control" id="text" rows="3" 
+        <textarea placeholder="Twoja wiadomość.." class="form-control" id="text" rows="3"
         (keyup.enter)="send()" formControlName="message"></textarea>
       </div>
       <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>

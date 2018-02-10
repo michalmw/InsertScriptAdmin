@@ -7,7 +7,7 @@ import { Company } from '../company.types';
   selector: 'app-form',
   templateUrl: './form.component.html'
 })
-export class CompanyFormComponent implements OnInit {
+export class CompanyFormComponent {
 
   id: string;
   company = new Company();
@@ -25,8 +25,6 @@ export class CompanyFormComponent implements OnInit {
     }
   }
 
-  ngOnInit() { }
-
   save() {
     if (this.id) {
       this.companyService.update(this.company).subscribe(
@@ -35,7 +33,7 @@ export class CompanyFormComponent implements OnInit {
     } else {
       this.companyService.add(this.company).subscribe(
         res => {
-          console.log('Response', res);
+          this.router.navigate(['/app/companys']);
         },
         err => {
           console.error('Error', err);

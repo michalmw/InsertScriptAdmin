@@ -5,7 +5,7 @@ import { RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import { environment } from './../../../environments/environment';
 import { User } from './user.types';
