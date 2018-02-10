@@ -123,6 +123,13 @@ body {
   position: fixed;
   top: 70px;
 }
-app-list-name {
-  display: block;
+@media (max-width: 767px) { 
+  .color-picker {
+    top: 37px !important;
+    left: 14px !important;
+  }
+  
+  .arrow-right {
+    display: none !important;
+  }
 }
