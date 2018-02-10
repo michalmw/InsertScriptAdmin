@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
 import { SurTableComponent } from './sur-table/sur-table.component';
+import { PushNotificationComponent } from './notify/nx.component';
 
 @NgModule({
   exports: [
     MenuComponent,
+    PushNotificationComponent,
     SurTableComponent
   ],
   imports: [
@@ -15,6 +17,7 @@ import { SurTableComponent } from './sur-table/sur-table.component';
     RouterModule
   ],
   declarations: [MenuComponent,
+    PushNotificationComponent,
     SurTableComponent]
 })
 export class SharedModule { }

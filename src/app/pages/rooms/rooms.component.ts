@@ -1,6 +1,6 @@
 import { WebSocketHandlerService } from './../websocket.service';
 import { ChatService } from './../chat.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Message, Room } from './rooms.types';
@@ -26,6 +26,7 @@ export class RoomsComponent implements OnInit {
     }
   };
 
+  @ViewChild('zzz') zzz: ElementRef;
 
   constructor(private fb: FormBuilder,
   private chatService: ChatService,
@@ -33,23 +34,29 @@ export class RoomsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.chatService.rooms.subscribe(
-    //   res => {
-    //     console.log('Res xD', res);
-    //     this.chatRooms = res;
-    //   }
-    // );
-    // console.log('Rooms', );
+    // Łączeinie z websocketem
     this.chatService.getRooms().subscribe(
-      res => {
-        console.log('Res xD', res);
-        // this.chatRooms = res;
-      });
-      this.chatService.getCRooms().subscribe(
-        res => {
-          console.log('CRooms xD', res);
-          this.chatRooms = res;
-        });
+      res => console.log);
+
+    // obieranie Wszystkich Roomów on start
+    this.chatService.getCRooms().subscribe(
+    res => {
+      console.log('CRooms xD', res);
+      this.chatRooms = res;
+    });
+
+    // Nowa wiadomość - powiadomienie
+    this.chatService.getLastMassage().subscribe(
+      data => {
+        if (data.message) {
+          this.notification = {
+            title: 'Nowa wiadomość!',
+            body: data.message
+          };
+          this.zzz.nativeElement.click();
+        }
+      }
+    );
     this.buildForm();
   }
 

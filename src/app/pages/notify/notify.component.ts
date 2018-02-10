@@ -1,6 +1,5 @@
 import { ChatService } from './../chat.service';
 import { Component } from '@angular/core';
-import { PushNotificationComponent } from './nx.component';
 
 @Component({
   selector: 'app-notify',

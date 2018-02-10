@@ -15,6 +15,8 @@ export class ChatService {
 
   public convertedRooms: BehaviorSubject<any> = new BehaviorSubject([]);
 
+  public lastMassage: BehaviorSubject<any> = new BehaviorSubject({});
+
   constructor(wsService: WebSocketHandlerService) {
      this.rooms = <Subject<Room[]>>wsService
       .connect(CHAT_URL)
@@ -26,6 +28,7 @@ export class ChatService {
           return data['rooms'];
         } else {
           console.log('Data in constructor another', data);
+          this.lastMassage.next(data);
           this.convertedRooms.subscribe(
             r => {
               for (let i = 0; i < r.length; i++) {
@@ -42,6 +45,10 @@ export class ChatService {
 
   getRooms() {
     return this.rooms;
+  }
+
+  getLastMassage() {
+    return this.lastMassage;
   }
 
   getCRooms() {
