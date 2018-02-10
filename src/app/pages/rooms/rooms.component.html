@@ -15,6 +15,7 @@
               <span class="float-left">Sender: {{message?.sender}}</span>
               <span class="float-right">{{message.timestamp | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
               <p>
+                {{message | json}}
                 {{ message.message }}
               </p>
             </div>
@@ -29,3 +30,14 @@
    
   </div>
 </div>
+<!-- 
+<app-push-notification #myNotification
+    [title]="notification.title"
+    [body]="notification.body"
+    [icon]="notification.icon"
+    [closeDelay]="notification.closeDelay"
+    (cliose)="close()"
+    (action)="notification.action($event)">
+  </app-push-notification>
+  
+  <button (click)="myNotification.show()">Kliknięcie :D</button> -->

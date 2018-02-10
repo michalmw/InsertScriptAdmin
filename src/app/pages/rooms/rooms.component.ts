@@ -16,14 +16,20 @@ export class RoomsComponent implements OnInit {
   openedRoom = 1;
   roomForm: FormGroup;
 
+  public notification: any = {
+    show: false,
+    title: 'New Angular 2 Library!',
+    body: 'ng2-notifications',
+    icon: 'https://goo.gl/3eqeiE',
+    action: function () {
+      window.open('https://github.com/alexcastillo/ng2-notifications');
+    }
+  };
+
+
   constructor(private fb: FormBuilder,
   private chatService: ChatService,
   private ws: WebSocketHandlerService) {
-    this.chatService.getRooms().subscribe(
-      res => {
-        console.log('Res xD', res);
-        this.chatRooms = res;
-      });
   }
 
   ngOnInit() {
@@ -37,8 +43,13 @@ export class RoomsComponent implements OnInit {
     this.chatService.getRooms().subscribe(
       res => {
         console.log('Res xD', res);
-        this.chatRooms = res;
+        // this.chatRooms = res;
       });
+      this.chatService.getCRooms().subscribe(
+        res => {
+          console.log('CRooms xD', res);
+          this.chatRooms = res;
+        });
     this.buildForm();
   }
 
