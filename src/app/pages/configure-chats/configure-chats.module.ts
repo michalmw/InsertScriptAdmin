@@ -40,7 +40,6 @@ const routes: Routes = [
     ConfigureChatsListComponent
   ],
   providers: [
-    ConfigureChatsService
   ]
 })
 export class ConfigureChatsModule { }

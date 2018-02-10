@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ConfigureChatsService } from './configure-chats/configure-chats.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { ChatService } from './chat.service';
@@ -52,6 +53,7 @@ const routes: Routes = [
   providers: [
     ChatService,
     CompanyService,
+    ConfigureChatsService,    
     WebSocketHandlerService
   ]
 })
