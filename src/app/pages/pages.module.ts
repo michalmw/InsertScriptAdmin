@@ -19,6 +19,10 @@ const routes: Routes = [
       component: PagesComponent,
       children: [
         {
+          path: 'archives',
+          loadChildren: './archives/archives.module#ArchivesModule'
+        },
+        {
           path: 'dashboard',
           component: DashboardComponent
         },

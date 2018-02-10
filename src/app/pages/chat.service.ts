@@ -31,9 +31,12 @@ export class ChatService {
           return data['rooms'] || [];
 
         } else if (data.type && data.type === 'newRoom') {
+          console.log('New Room', data);
           this.addNewRoom(data);
 
         } else {
+          console.log('New Chat', data);
+          
           this.addNewChat(data);
           return data['rooms'];
 
@@ -44,6 +47,7 @@ export class ChatService {
   addNewRoom(data) {
     let tmpData = {
       gateId: data.gateId,
+      gateName: data.gateName,
       message: data.message,
       sessionId: data.sessionId,
       timestamp: data.timestamp,
@@ -54,6 +58,7 @@ export class ChatService {
         r.push({
           _id: data.sessionId,
           gateId: data.gateId,
+          name: data.name,
           messages: [
             tmpData
           ]
