@@ -25,7 +25,6 @@ export class ChatService {
       .connect(CHAT_URL)
       .map((response: MessageEvent): any => {
         let data = JSON.parse(response.data);
-        console.log('Yea !!!!', data);
         if (data.type && data.type == 'init') {
           this.wasInit.next(true);
           this.convertedRooms.next(data['rooms']);
@@ -36,7 +35,8 @@ export class ChatService {
           this.addNewRoom(data);
 
         } else {
-          console.log('New Message', data);
+          console.log('New Chat', data);
+          
           this.addNewChat(data);
           return data['rooms'];
 
@@ -47,6 +47,7 @@ export class ChatService {
   addNewRoom(data) {
     let tmpData = {
       gateId: data.gateId,
+      gateName: data.gateName,
       message: data.message,
       sessionId: data.sessionId,
       timestamp: data.timestamp,
@@ -57,6 +58,7 @@ export class ChatService {
         r.push({
           _id: data.sessionId,
           gateId: data.gateId,
+          name: data.name,
           messages: [
             tmpData
           ]

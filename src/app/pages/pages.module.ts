@@ -19,7 +19,11 @@ const routes: Routes = [
       component: PagesComponent,
       children: [
         {
-          path: '',
+          path: 'archives',
+          loadChildren: './archives/archives.module#ArchivesModule'
+        },
+        {
+          path: 'dashboard',
           component: DashboardComponent
         },
         {
@@ -34,6 +38,10 @@ const routes: Routes = [
         }, {
           path: 'configure-chats',
           loadChildren: './configure-chats/configure-chats.module#ConfigureChatsModule'
+        }, {
+          path: '',
+          redirectTo: 'dashboard',
+          pathMatch: 'full'
         }
       ]
     }

@@ -10,7 +10,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let row of config?.data; let i = index">
-        <td scope="row">{{i+1}}</td>
+        <td scope="row">{{i+1}}.</td>
         <td *ngFor="let column of config?.columns" [routerLink]="['./edit/', row._id]">
           {{row[column.name] }}
         </td>

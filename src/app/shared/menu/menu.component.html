@@ -2,17 +2,23 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/app/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="fas fa-dashboard"></i>
-            Dashboard 
+            Pulpit 
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/app/rooms']" routerLinkActive="active">
             <i class="fas fa-comments"></i>
-            Rooms
+            Pokoje
           </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/app/archives']" routerLinkActive="active">
+              <i class="far fa-comment-alt"></i>
+              Rozmowy archiwalne
+            </a>
+          </li>
         <li class="nav-item" *ngIf="checkRole('owner')">
             <a class="nav-link" [routerLink]="['/app/companys']" routerLinkActive="active">
               <i class="fas fa-building"></i>
@@ -22,13 +28,13 @@
         <li class="nav-item" *ngIf="checkRole('owner')">
           <a class="nav-link" [routerLink]="['/app/users']" routerLinkActive="active">
             <i class="fas fa-users"></i>
-            Users
+            Uzytkownicy
           </a>
         </li>
         <li class="nav-item" *ngIf="checkRole('owner')">
           <a class="nav-link" [routerLink]="['/app/configure-chats']" routerLinkActive="active">
             <i class="fas fa-edit"></i>
-            Configure Chats
+            Konfiguracja Bramki
           </a>
         </li>
       </ul>

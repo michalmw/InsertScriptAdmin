@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { ChatService } from './chat.service';
 import { AppService } from './../app.service';
 import { Router } from '@angular/router';
@@ -26,11 +27,12 @@ export class PagesComponent implements OnInit {
   @ViewChild('showmessage') showmessage: ElementRef;
 
   constructor(
+    private authService: AuthService,
     private appService: AppService,
     private chatService: ChatService,
     private router: Router) {
 
-    this.loggedUser.email = localStorage.getItem('loginAs');
+    this.loggedUser.email = localStorage.getItem('loginAs') || 'Przeładuj strone wwww';
     this.loggedUser.type = localStorage.getItem('type');
     // Łączeinie z websocketem
     this.chatService.getData().subscribe(
@@ -49,7 +51,10 @@ export class PagesComponent implements OnInit {
         }
       }
     );
+    if (!this.authService.checkIsLogged().value) {
+      this.router.navigate(['/login']);
     }
+  }
 
   ngOnInit() {}
 
