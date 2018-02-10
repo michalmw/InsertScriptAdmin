@@ -10,9 +10,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
           <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
             <span class="float-left">Sender: {{message?.sender}}</span>
             <span class="float-right">{{message.timestamp | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
-            <p>
+            <p *ngIf="message.type !== 'image'">
               {{ message.message }}
             </p>
+            <img *ngIf="message.type == 'image'" class="img-fluid" src="{{message.url}}">
           </div>
       </div>
     </div>

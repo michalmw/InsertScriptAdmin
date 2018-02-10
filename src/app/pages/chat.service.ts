@@ -25,6 +25,7 @@ export class ChatService {
       .connect(CHAT_URL)
       .map((response: MessageEvent): any => {
         let data = JSON.parse(response.data);
+        console.log('Dostaje od backendu', data);
         if (data.type && data.type == 'init') {
           this.wasInit.next(true);
           this.convertedRooms.next(data['rooms']);

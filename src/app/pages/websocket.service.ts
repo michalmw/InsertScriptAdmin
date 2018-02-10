@@ -24,7 +24,8 @@ export class WebSocketHandlerService {
       ws.onmessage = obs.next.bind(obs);
       ws.onerror = obs.error.bind(obs);
       ws.onclose = obs.complete.bind(obs);
-      return ws.close.bind(ws);
+      return '';
+      // return ws.close.bind(ws);
     });
     const observer = {
       next: (data: Object) => {
