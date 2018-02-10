@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="d-flex row">
-      <div class="form-group col-8">
+      <div class="form-group col-md-8 col-12">
         <label for="company">Firma</label>
         <select class="form-control" name="company" id="company" [(ngModel)]="gateway.companyId">
           <option *ngFor="let company of companies" [value]="company._id">
@@ -40,15 +40,21 @@
         </select>
       </div>
     </div>
-    <div>
-      <div *ngFor="let config of chatColorsArray; index as i" class="d-flex my-2 row">
-        <div class="col-4">{{config.name}} </div>
-        <div class="col">
-            <input class="form-control" (colorPickerChange)="setColor($event, i)" [(colorPicker)]="color" [style.background]="config.color"/>
-        </div>           
+    <div class="row">
+      <div class="col-12 col-md-6 row">
+        <div *ngFor="let config of chatColorsArray; index as i" class="d-flex my-2 row col-12">
+            <div class="col-4">{{config.name}} </div>
+            <div class="col w-100">
+                <input class="form-control" (colorPickerChange)="setColor($event, i)" [(colorPicker)]="color" [style.background]="config.color"/>
+            </div>           
+          </div>
+      </div>
+      <div class="col-12 col-md-6 row">
+        <textarea class="d-flex my-2 row col-12">
+        </textarea>
       </div>
     </div>
-    <button (click)="save()">
+    <button (click)="save()" class="btn float-right mt-4">
       {{ id ? 'Zapisz' : 'Dodaj'}}
     </button>
   </form>
