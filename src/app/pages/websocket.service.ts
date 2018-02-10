@@ -37,7 +37,6 @@ export class WebSocketHandlerService {
   }
 
   sendData(date) {
-    console.log('Date', date);
     return this.subject.next(date);
   }
 

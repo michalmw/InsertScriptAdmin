@@ -25,18 +25,15 @@ export class ChatService {
       .connect(CHAT_URL)
       .map((response: MessageEvent): any => {
         let data = JSON.parse(response.data);
-        console.log('Yea !!!!', data);
         if (data.type && data.type == 'init') {
           this.wasInit.next(true);
           this.convertedRooms.next(data['rooms']);
           return data['rooms'] || [];
 
         } else if (data.type && data.type === 'newRoom') {
-          console.log('New Room', data);
           this.addNewRoom(data);
 
         } else {
-          console.log('New Message', data);
           this.addNewChat(data);
           return data['rooms'];
 

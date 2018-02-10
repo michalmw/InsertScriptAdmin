@@ -17,7 +17,7 @@ export class ConfigureChatsListComponent implements OnInit {
       },
       {
         column: 'Firma',
-        name: 'companyName'
+        name: 'companyId.name'
       }
     ],
     data: undefined

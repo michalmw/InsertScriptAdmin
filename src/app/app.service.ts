@@ -14,6 +14,7 @@ export class AppService {
   private http: HttpClient) {}
 
   logout() {
+    localStorage.clear();
     return this.http.get(this.url).pipe(
       catchError(this.handleError)
     );

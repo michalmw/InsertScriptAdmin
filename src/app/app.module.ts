@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
+import { AuthService } from './pages/auth.service';
+
 
 const routes: Routes = [
   {
@@ -20,7 +22,7 @@ const routes: Routes = [
         loadChildren: './pages/pages.module#PagesModule'
       }, {
         path: '',
-        redirectTo: 'app',
+        redirectTo: 'login',
         pathMatch: 'full'
       }
     ]
@@ -35,7 +37,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ AppService],
+  providers: [ AuthService, AppService],
   bootstrap: [AppComponent]
 })
 

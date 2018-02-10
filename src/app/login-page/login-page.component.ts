@@ -1,3 +1,4 @@
+import { AuthService } from './../pages/auth.service';
 import { User } from './../pages/users/user.types';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   user = new User();
 
   constructor(
+    private authService: AuthService,
     private loginService: LoginService,
     private router: Router
   ) { }
@@ -37,7 +39,9 @@ export class LoginPageComponent implements OnInit {
         res => {
           localStorage.setItem('loginAs', res.user.email);
           localStorage.setItem('type', res.user.type);
-            this.router.navigate(['/app']);
+          localStorage.setItem('_id', res.user._id);
+          this.authService.setUser(res.user);
+          this.router.navigate(['/app']);
         },
         err => {
           console.error('Error typu:', err);
