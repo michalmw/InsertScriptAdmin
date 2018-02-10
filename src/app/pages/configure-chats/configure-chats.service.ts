@@ -29,6 +29,12 @@ export class ConfigureChatsService {
     );
   }
 
+  getOne(id: string) {
+    return this.http.get(`${this.url}/${id}`, {withCredentials: true}).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
   delete(id: string) {
     return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
