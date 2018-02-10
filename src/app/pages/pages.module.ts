@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { ChatService } from './chat.service';
 import { RoomsComponent } from './rooms/rooms.component';
-import { NotifyComponent } from './notify/notify.component';
 import { WebSocketHandlerService } from './websocket.service';
 import { SharedModule } from '../shared/shared.module';
 import { CompanyService } from './companys/company.service';
@@ -25,9 +24,6 @@ const routes: Routes = [
         {
           path: 'rooms',
           loadChildren: './rooms/rooms.module#RoomsModule'
-        }, {
-          path: 'notify',
-          component: NotifyComponent
         }, {
           path: 'companys',
           loadChildren: './companys/companys.module#CompanysModule'
@@ -51,7 +47,6 @@ const routes: Routes = [
   ],
   declarations: [
     DashboardComponent,
-    NotifyComponent,
     PagesComponent,
   ],
   providers: [
