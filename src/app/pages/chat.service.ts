@@ -12,20 +12,46 @@ const CHAT_URL = environment.websocketUrl;
 export class ChatService {
 
   public rooms: Subject<Room[]>;
-
+  private wasInit: BehaviorSubject<any> = new BehaviorSubject(false);
   public convertedRooms: BehaviorSubject<any> = new BehaviorSubject([]);
 
   public lastMassage: BehaviorSubject<any> = new BehaviorSubject({});
 
-  constructor(wsService: WebSocketHandlerService) {
-     this.rooms = <Subject<Room[]>>wsService
+  constructor(private wsService: WebSocketHandlerService) {
+     this.getData();
+  }
+
+  getData() {
+    console.log('getData');
+    return this.rooms = <Subject<Room[]>>this.wsService
       .connect(CHAT_URL)
       .map((response: MessageEvent): any => {
         let data = JSON.parse(response.data);
+        console.log('Data in map in connect');
         if (data.type && data.type == 'init') {
+          this.wasInit.next(true);
           console.log('Data in constructor', data);
           this.convertedRooms.next(data['rooms']);
           return data['rooms'] || [];
+        } else if (data.type && data.type === 'newRoom') {
+          this.convertedRooms.subscribe(
+            r => {
+              r.push({
+                _id: data.sessionId,
+                gateId: data.gateId,
+                messages: [
+                  {
+                    gateId: data.gateId,
+                    message: data.message,
+                    sessionId: data.sessionId,
+                    timestamp: data.timestamp,
+                    type: 'fromClient'
+                  }
+                ]
+              });
+            }
+          );
+          // this.convertedRooms.next(data['rooms']);
         } else {
           console.log('Data in constructor another', data);
           this.lastMassage.next(data);
@@ -41,6 +67,10 @@ export class ChatService {
           return data['rooms'];
         }
       });
+  }
+
+  checkWasInit() {
+    return this.wasInit;
   }
 
   getRooms() {

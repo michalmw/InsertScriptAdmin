@@ -26,7 +26,12 @@ export class PagesComponent implements OnInit {
     private appService: AppService,
     private chatService: ChatService,
     private router: Router) {
-      // Nowa wiadomość - powiadomienie
+
+    // Łączeinie z websocketem
+    this.chatService.getRooms().subscribe(
+      res => console.log);
+      
+    // Nowa wiadomość - powiadomienie
     this.chatService.getLastMassage().subscribe(
       data => {
         if (data.message) {
@@ -40,12 +45,9 @@ export class PagesComponent implements OnInit {
     );
     }
 
-  ngOnInit() {
-    // this.chatService.getRooms().subscribe(
-    //   res => console.log('Res -- from pages service', res)
-    // );
-  }
+  ngOnInit() {}
 
+  close() {}
 
   logout() {
     this.appService.logout();

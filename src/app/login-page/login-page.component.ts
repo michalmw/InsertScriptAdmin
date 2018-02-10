@@ -37,7 +37,10 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         res => {
           console.log('Res', res);
-          this.router.navigate(['/app']);
+          // I don;t know why not working but only when reload page working
+            this.router.navigate(['/app']);
+          // TODO: Check why?
+          // window.location.replace('/app');
         },
         err => {
           console.error('Error typu:', err);
