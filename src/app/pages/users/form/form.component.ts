@@ -23,12 +23,13 @@ export class UsersFormComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {
     singleSelection: false,
-    text: 'Select Countries',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
+    text: 'Wybierz firmy',
+    selectAllText: 'Zaznacz wszystkie',
+    unSelectAllText: 'Odznacz wszystkie',
     enableSearchFilter: false,
     classes: ''
   };
+  roles = ['user', 'owner', 'admin'];
 
   constructor(
     private acRouter: ActivatedRoute,
@@ -44,18 +45,22 @@ export class UsersFormComponent implements OnInit {
           delete user.password;
           user.companyId = user.companyId['_id'];
           this.user = user;
+        },
+        error => console.log(error),
+        () => {
+          this.configurateChats.get().subscribe(
+            res => {
+              this.gateway = res;
+              this.setDropdownList();
+              if (this.id) {
+                this.setSelectedItems();
+              }
+            }
+          );
         }
       );
     }
-    this.configurateChats.get().subscribe(
-      res => {
-        this.gateway = res;
-        this.setDropdownList();
-        if (this.id) {
-          this.setSelectedItems();
-        }
-      }
-    );
+    
 
     this.companysService.get().subscribe(
       res => this.companys = res
@@ -99,17 +104,20 @@ export class UsersFormComponent implements OnInit {
 
   setDropdownList() {
     this.gateway.map(gate => {
-      this.dropdownList.push({'id': gate._id, 'itemName': gate.name});
+      console.log(this.dropdownList, 'przed');
+      this.dropdownList.push({ 'id': gate._id, 'itemName': gate.name });
     });
+    console.log(this.dropdownList, 'po');
   }
 
   setSelectedItems() {
-    if (this.user.gateway) {
-      this.user.gateway.forEach(item => {
-        const obj = this.dropdownList.find(drop => drop.id === item);
-        this.selectedItems.push(obj);
-      });
-    }
+
+    console.log(this.dropdownList);
+    console.log(this.user.gateway);
+    this.selectedItems = [];
+    const s = new Set(this.user.gateway || [])
+    this.selectedItems = this.dropdownList.filter(x => s.has(x.id))
+    
   }
 
 }
