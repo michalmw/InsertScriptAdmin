@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ColorPickerModule } from 'ngx-color-picker';
+
 import { ConfigureChatsFormComponent } from './form/form.component';
 import { ConfigureChatsListComponent } from './list/list.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -30,6 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    ColorPickerModule,
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
