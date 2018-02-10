@@ -18,9 +18,13 @@ export class SurTableComponent implements OnInit {
 
   @Output() deleteRow = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+    console.log(this.config)
+   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    console.log(this.config)
+  }
 
   delete(id: string) {
     this.deleteRow.emit(id);

@@ -41,21 +41,31 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-md-6 row">
-        <div *ngFor="let config of chatColorsArray; index as i" class="d-flex my-2 row col-12">
-            <div class="col-4">{{config.name}} </div>
-            <div class="col w-100">
-                <input class="form-control" (colorPickerChange)="setColor($event, i)" [(colorPicker)]="color" [style.background]="config.color"/>
-            </div>           
-          </div>
+      <div class="col-md-6 col-12">
+          <div *ngFor="let config of chatColorsArray; index as i" class="d-flex my-2 row col-12">
+              <div class="col-4">{{config.name}} </div>
+              <div class="col w-100">
+                  <input class="form-control" (colorPickerChange)="setColor($event, i)" [(colorPicker)]="color" [style.background]="config.color"/>
+              </div>           
+            </div>
       </div>
-      <div class="col-12 col-md-6 row">
-        <textarea class="d-flex my-2 row col-12">
-        </textarea>
+      <div class="col-md-6 col-12">
+        <form>
+            <textarea class="my-2 w-100"  id="generated-code" [value]="codeMessage"></textarea>
+        </form>
       </div>
     </div>
-    <button (click)="save()" class="btn float-right mt-4">
-      {{ id ? 'Zapisz' : 'Dodaj'}}
-    </button>
+    <div class="d-flex">
+        <button (click)="generateCode()" class="btn d-block ml-auto mt-4">
+          Generuj
+        </button>
+        <button (click)="copyCode()" class="btn ml-3 d-block mt-4">
+          Kopiuj wszystko 
+        </button>
+        <button (click)="save()" class="btn ml-3 d-blockt mt-4">
+          {{ id ? 'Zapisz' : 'Dodaj'}}
+        </button>
+    </div>
+
   </form>
 </div>
