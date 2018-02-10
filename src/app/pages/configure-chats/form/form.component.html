@@ -1,18 +1,29 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dodawanie czatu</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <button class="btn btn-sm btn-outline-secondary" [routerLink]="['/app/configure-chats']">Wróć na liste</button>
-      </div>
+  <h1 class="h2">Dodawanie czatu</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary" [routerLink]="['/app/configure-chats']">Wróć na liste</button>
     </div>
   </div>
-  <div>
-    <form>
-      <div class="form-group">
+</div>
+<div>
+  <form>
+    <div class="d-flex row">
+      <div class="form-group col-md-6 col-12">
         <label for="name">Nazwa</label>
         <input type="text" name="name" class="form-control" id="name" [(ngModel)]="gateway.name">
       </div>
-      <div class="form-group">
+      <div class="form-group col-md-6 col-12">
+        <label for="side">Lokalizacja chatu</label>
+        <select class="form-control" name="side" id="side" [(ngModel)]="gateway.side"> 
+          <option *ngFor="let side of sideArray" [value]="side.value">
+            {{ side.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="d-flex row">
+      <div class="form-group col-8">
         <label for="company">Firma</label>
         <select class="form-control" name="company" id="company" [(ngModel)]="gateway.companyId">
           <option *ngFor="let company of companies" [value]="company._id">
@@ -20,8 +31,25 @@
           </option>
         </select>
       </div>
-      <button (click)="save()">
-        {{ id ? 'Zapisz' : 'Dodaj'}}
-      </button>
-    </form>
-  </div>
+      <div class="form-group col-md-4 col-12">
+        <label for="fontSize">Wielkość czcionki</label>
+        <select class="form-control" name="fontSize" id="fontSize" [(ngModel)]="gateway.fontSize"> 
+          <option *ngFor="let size of sizeArray" [value]="size.value">
+            {{ size.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div *ngFor="let config of chatColorsArray; index as i" class="d-flex my-2 row">
+        <div class="col-4">{{config.name}} </div>
+        <div class="col">
+            <input class="form-control" (colorPickerChange)="setColor($event, i)" [(colorPicker)]="color" [style.background]="config.color"/>
+        </div>           
+      </div>
+    </div>
+    <button (click)="save()">
+      {{ id ? 'Zapisz' : 'Dodaj'}}
+    </button>
+  </form>
+</div>
