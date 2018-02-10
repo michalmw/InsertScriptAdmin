@@ -23,14 +23,26 @@ export class ConfigureChatsService {
     );
   }
 
+  delete(id: string) {
+    return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
   get() {
     return this.http.get(this.url, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }
 
-  delete(id: string) {
-    return this.http.delete(`${this.url}/${id}`, {withCredentials: true}).pipe(
+  getOne(id: string) {
+    return this.http.get(`${this.url}/${id}`, {withCredentials: true}).pipe(
+      catchError(this.appService.handleError)
+    );
+  }
+
+  update(gateway: Gateway) {
+    return this.http.put(`${this.url}/${gateway._id}`, gateway, {withCredentials: true}).pipe(
       catchError(this.appService.handleError)
     );
   }

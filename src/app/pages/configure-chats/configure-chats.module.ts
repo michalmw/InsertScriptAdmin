@@ -1,12 +1,12 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
-import { ConfigureChatsAddComponent } from './add/add.component';
+import { ConfigureChatsFormComponent } from './form/form.component';
 import { ConfigureChatsListComponent } from './list/list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ConfigureChatsService } from './configure-chats.service';
-import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -15,12 +15,12 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: ConfigureChatsAddComponent
+    component: ConfigureChatsFormComponent
   },
-  // {
-  //   path: 'edit/:id',
-  //   component: UsersFormComponent
-  // },
+  {
+    path: 'edit/:id',
+    component: ConfigureChatsFormComponent
+  },
   {
     path: '',
     pathMatch: 'full',
@@ -36,7 +36,7 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    ConfigureChatsAddComponent,
+    ConfigureChatsFormComponent,
     ConfigureChatsListComponent
   ],
   providers: [
