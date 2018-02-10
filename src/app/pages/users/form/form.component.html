@@ -22,11 +22,15 @@
           <option *ngFor="let company of companys" [value]="company._id">{{company.name}}</option>
         </select>
       </div>
-    <div>
+    <!-- <div>
       <div  class="form-check form-check-inline" *ngFor="let g of gateway; let i = index">
         <input class="form-check-input" type="checkbox" (change)="changeGetway(g)" [checked]="isChecked(g._id)"  [value]="g._id">
         <label class="form-check-label" for="inlineCheckbox1">{{g.name}}</label>
       </div>
+    </div> -->
+    <div>
+      <angular2-multiselect [data]="dropdownList" name="multiselect" [(ngModel)]="selectedItems" 
+      [settings]="dropdownSettings"></angular2-multiselect>
     </div>
     <button (click)="save()" class="btn btn-success float-right">
       {{ id ? 'Zapisz' : 'Dodaj'}}

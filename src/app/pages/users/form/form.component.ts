@@ -19,6 +19,16 @@ export class UsersFormComponent implements OnInit {
   companys: Company[];
   user = new User();
   gateway: Gateway[] = [];
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {
+    singleSelection: false,
+    text: 'Select Countries',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    enableSearchFilter: false,
+    classes: ''
+  };
 
   constructor(
     private acRouter: ActivatedRoute,
@@ -38,7 +48,13 @@ export class UsersFormComponent implements OnInit {
       );
     }
     this.configurateChats.get().subscribe(
-      res => this.gateway = res
+      res => {
+        this.gateway = res;
+        this.setDropdownList();
+        if (this.id) {
+          this.setSelectedItems();
+        }
+      }
     );
 
     this.companysService.get().subscribe(
@@ -49,19 +65,22 @@ export class UsersFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeGetway(g) {
-    if (this.user.gateway.map(i => i).indexOf(g._id) === -1) {
-      this.user.gateway.push(g._id);
-    } else {
-      this.user.gateway = this.user.gateway.filter(i => i !== g._id);
-    }
-  }
+  // changeGetway(g) {
+  //   if (this.user.gateway.map(i => i).indexOf(g._id) === -1) {
+  //     this.user.gateway.push(g._id);
+  //   } else {
+  //     this.user.gateway = this.user.gateway.filter(i => i !== g._id);
+  //   }
+  // }
 
-  isChecked(id) {
-    return this.user.gateway.map(i => i).indexOf(id) === -1 ? false : true;
-  }
+  // isChecked(id) {
+  //   return this.user.gateway.map(i => i).indexOf(id) === -1 ? false : true;
+  // }
 
   save() {
+    this.user.gateway = [];
+    this.selectedItems.forEach(item => this.user.gateway.push(item.id));
+    console.log(this.user);
     if (this.id) {
       this.usersService.update(this.user).subscribe(
         (res) => this.router.navigate(['/app/users'])
@@ -75,6 +94,21 @@ export class UsersFormComponent implements OnInit {
           console.error('Error', err);
         }
       );
+    }
+  }
+
+  setDropdownList() {
+    this.gateway.map(gate => {
+      this.dropdownList.push({'id': gate._id, 'itemName': gate.name});
+    });
+  }
+
+  setSelectedItems() {
+    if (this.user.gateway) {
+      this.user.gateway.forEach(item => {
+        const obj = this.dropdownList.find(drop => drop.id === item);
+        this.selectedItems.push(obj);
+      });
     }
   }
 

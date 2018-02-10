@@ -4,8 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedModule } from './../../shared/shared.module';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
+import { SharedModule } from './../../shared/shared.module';
 import { UsersFormComponent } from './form/form.component';
 import { UsersListComponent } from './list/list.component';
 import { UsersService } from './users.service';
@@ -32,6 +33,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [UsersFormComponent, UsersListComponent],
   imports: [
+    AngularMultiSelectModule,
     CommonModule,
     HttpClientModule,
     FormsModule,
