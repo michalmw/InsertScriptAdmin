@@ -3,29 +3,32 @@
     <nav class="nav flex-column menu-with-rooms">
       <!-- {{chatRooms | json}} -->
       <a class="nav-link" [class.active]="i == openedRoom" *ngFor="let room of chatRooms; let i = index;" (click)="openRoom(i)">
-        Room {{ room._id }} <br>
+        Room {{ room?.name }} <br>
         <small>Bramka: {{room.gateId}}</small>
       </a>
     </nav>
   </div>
   <div class="col-10">
+    <div *ngIf="openedRoom">
       <h3>Room {{ openedRoom }}</h3>
-        <div *ngFor="let message of chatRooms[openedRoom]?.messages" style="overflow: hidden;">
-            <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
-              <span class="float-left">Sender: {{message?.sender}}</span>
-              <span class="float-right">{{message.timestamp | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
-              <p>
-                {{ message.message }}
-              </p>
-            </div>
-        </div>
-        <hr>
-        <form [formGroup]="roomForm">
-          <div class="form-group">
-            <textarea placeholder="Twoja wiadomość.." class="form-control" id="text" rows="3" (keyup.enter)="send()" formControlName="message"></textarea>
+      <div *ngFor="let message of chatRooms[openedRoom]?.messages" style="overflow: hidden;">
+          <div class="message" [ngClass]="{'float-left': message?.type === 'fromClient', 'float-right': message?.type === 'fromUser'}">
+            <span class="float-left">Sender: {{message?.sender}}</span>
+            <span class="float-right">{{message.timestamp | date: 'yyyy-MM-dd yy:mm:ss'}}</span> <br />
+            <p>
+              {{ message.message }}
+            </p>
           </div>
-          <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>
-        </form>
+      </div>
+      <hr>
+      <form [formGroup]="roomForm">
+        <div class="form-group">
+          <textarea placeholder="Twoja wiadomość.." class="form-control" id="text" rows="3" (keyup.enter)="send()" formControlName="message"></textarea>
+        </div>
+        <button type="button" class="btn btn-success float-right" (click)="send()">Send</button>
+      </form>
+    </div>
+     
    
   </div>
 </div>
@@ -39,4 +42,4 @@
     (action)="notification.action($event)">
   </app-push-notification>
   
-  <button #zzz style="display: none;" (click)="myNotification.show()">Kliknięcie :D</button>
+  <button #showmessage style="display: none;" (click)="myNotification.show()">Kliknięcie :D</button>

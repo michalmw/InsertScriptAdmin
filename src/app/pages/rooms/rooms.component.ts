@@ -13,7 +13,7 @@ import { Message, Room } from './rooms.types';
 export class RoomsComponent implements OnInit {
   chatRooms: Room[] = [];
 
-  openedRoom = 1;
+  openedRoom;
   roomForm: FormGroup;
 
   public notification: any = {
@@ -26,7 +26,7 @@ export class RoomsComponent implements OnInit {
     }
   };
 
-  @ViewChild('zzz') zzz: ElementRef;
+  @ViewChild('showmessage') showmessage: ElementRef;
 
   constructor(private fb: FormBuilder,
   private chatService: ChatService,
@@ -53,7 +53,7 @@ export class RoomsComponent implements OnInit {
             title: 'Nowa wiadomość!',
             body: data.message
           };
-          this.zzz.nativeElement.click();
+          this.showmessage.nativeElement.click();
         }
       }
     );

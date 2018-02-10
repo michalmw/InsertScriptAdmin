@@ -25,7 +25,7 @@ export class ChatService {
         if (data.type && data.type == 'init') {
           console.log('Data in constructor', data);
           this.convertedRooms.next(data['rooms']);
-          return data['rooms'];
+          return data['rooms'] || [];
         } else {
           console.log('Data in constructor another', data);
           this.lastMassage.next(data);
