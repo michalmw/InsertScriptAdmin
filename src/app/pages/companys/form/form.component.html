@@ -8,9 +8,15 @@
   </div>
   <div>
     <form>
-      <input type="text" name="nazwa" [(ngModel)]="company.name">
-      <input type="text" name="description" [(ngModel)]="company.description">
-      <button (click)="save()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nazwa firmy</label>
+        <input type="text" class="form-control" name="nazwa" [(ngModel)]="company.name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nazwa firmy</label>
+        <textarea class="form-control" name="description" id="description" [(ngModel)]="companydescription" ></textarea>
+      </div>
+      <button (click)="save()" class="btn btn-success float-right">
         {{ id ? 'Zapisz' : 'Dodaj'}}
       </button>
     </form>

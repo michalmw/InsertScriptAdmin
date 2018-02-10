@@ -123,3 +123,6 @@ body {
   position: fixed;
   top: 70px;
 }
+app-list-name {
+  display: block;
+}

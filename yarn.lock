@@ -4461,6 +4461,10 @@ ng2-notifications@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ng2-notifications/-/ng2-notifications-0.3.0.tgz#2fbf5a12f54ab16fc7f0035076098bac9d818bee"
 
+ngx-color-picker@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/ngx-color-picker/-/ngx-color-picker-5.3.1.tgz#d7d42526ae9e1ecef3cfd6371dbc29ab9ebca259"
+
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"

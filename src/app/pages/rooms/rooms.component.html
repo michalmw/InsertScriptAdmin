@@ -6,6 +6,7 @@
       (openRoom)="openRoom($event)"></app-list-name>
   </div>
   <div class="col-10">
+    <h3>Szczegóły pokoju</h3>
     <div *ngIf="openedRoom != null; else chooseRoom">
       <app-room-view #scrollMe style="overflow: scroll; height: xyz;"
           [messages]="chatRooms[openedRoom]?.messages"
