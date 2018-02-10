@@ -38,14 +38,19 @@ export class ConfigureChatsFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.gateway);
-    this.configureChatsService.add(this.gateway).subscribe(
-      res => {
-        console.log('Response', res);
-      },
-      err => {
-        console.error('Error', err);
-      }
-    );
+    if (this.id) {
+      this.configureChatsService.update(this.gateway).subscribe(
+        (res) => this.router.navigate(['/app/configure-chats'])
+      );
+    } else {
+      this.configureChatsService.add(this.gateway).subscribe(
+        res => {
+          console.log('Response', res);
+        },
+        err => {
+          console.error('Error', err);
+        }
+      );
+    }
   }
 }
