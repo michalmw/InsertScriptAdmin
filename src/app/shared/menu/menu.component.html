@@ -4,7 +4,6 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <i class="fas fa-dashboard"></i>
-
             Dashboard 
           </a>
         </li>
@@ -14,19 +13,19 @@
             Rooms
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="checkRole('owner')">
             <a class="nav-link" [routerLink]="['/app/companys']" routerLinkActive="active">
               <i class="fas fa-building"></i>
               Firmy
             </a>
           </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="checkRole('owner')">
           <a class="nav-link" [routerLink]="['/app/users']" routerLinkActive="active">
             <i class="fas fa-users"></i>
             Users
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="checkRole('owner')">
           <a class="nav-link" [routerLink]="['/app/configure-chats']" routerLinkActive="active">
             <i class="fas fa-edit"></i>
             Configure Chats

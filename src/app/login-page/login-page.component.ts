@@ -1,3 +1,4 @@
+import { User } from './../pages/users/user.types';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,10 +11,8 @@ import { LoginService } from './login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  user = {
-    email: undefined,
-    password: undefined
-  }
+  user = new User();
+
   constructor(
     private loginService: LoginService,
     private router: Router
@@ -36,12 +35,9 @@ export class LoginPageComponent implements OnInit {
       this.loginService.login(this.user)
       .subscribe(
         res => {
-          console.log('Res', res.user);
           localStorage.setItem('loginAs', res.user.email);
-          // I don;t know why not working but only when reload page working
+          localStorage.setItem('type', res.user.type);
             this.router.navigate(['/app']);
-          // TODO: Check why?
-          // window.location.replace('/app');
         },
         err => {
           console.error('Error typu:', err);

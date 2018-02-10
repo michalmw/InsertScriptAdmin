@@ -10,8 +10,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  email;
-  public notification: any = {
+  loggedUser = {
+    email: undefined,
+    type: undefined
+  };
+  notification: any = {
     show: false,
     title: 'New Angular 2 Library!',
     body: 'ng2-notifications',
@@ -22,13 +25,13 @@ export class PagesComponent implements OnInit {
   };
   @ViewChild('showmessage') showmessage: ElementRef;
 
-
   constructor(
     private appService: AppService,
     private chatService: ChatService,
     private router: Router) {
-    
-      this.email = localStorage.getItem('loginAs');
+
+    this.loggedUser.email = localStorage.getItem('loginAs');
+    this.loggedUser.type = localStorage.getItem('type');
     // Łączeinie z websocketem
     this.chatService.getData().subscribe(
       res => console.log('A dostaje tutaj zmianyt :D', res)
@@ -51,6 +54,8 @@ export class PagesComponent implements OnInit {
   ngOnInit() {}
 
   close() {}
+
+  
 
   logout() {
     this.appService.logout();
