@@ -44,7 +44,7 @@ export class PagesComponent implements OnInit {
       data => {
         if (data.message) {
           this.notification = {
-            title: 'Nowa wiadomość!',
+            title: 'Nowa wiadomość - Pokój: ' + data.name,
             body: data.message
           };
           this.showmessage.nativeElement.click();
