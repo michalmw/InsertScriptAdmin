@@ -19,15 +19,27 @@ export class RoomsComponent implements OnInit {
   constructor(private fb: FormBuilder,
   private chatService: ChatService,
   private ws: WebSocketHandlerService) {
+    this.chatService.getRooms().subscribe(
+      res => {
+        console.log('Res xD', res);
+        this.chatRooms = res;
+      });
   }
 
   ngOnInit() {
-    this.buildForm();
+    // this.chatService.rooms.subscribe(
+    //   res => {
+    //     console.log('Res xD', res);
+    //     this.chatRooms = res;
+    //   }
+    // );
+    // console.log('Rooms', );
     this.chatService.getRooms().subscribe(
       res => {
-        this.chatRooms = res;
         console.log('Res xD', res);
+        this.chatRooms = res;
       });
+    this.buildForm();
   }
 
   buildForm() {
