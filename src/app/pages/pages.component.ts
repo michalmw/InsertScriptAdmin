@@ -1,14 +1,14 @@
 import { ChatService } from './chat.service';
 import { AppService } from './../app.service';
 import { Router } from '@angular/router';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent implements OnInit, AfterViewInit {
+export class PagesComponent implements OnInit {
 
   constructor(
     private appService: AppService,
@@ -17,14 +17,11 @@ export class PagesComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
+    // this.chatService.getRooms().subscribe(
+    //   res => console.log('Res -- from pages service', res)
+    // );
   }
 
-  ngAfterViewInit() {
-    console.log('xxx');
-    this.chatService.getRooms().subscribe(
-      res => console.log('Res -- from pages service', res)
-    );
-  }
 
   logout() {
     this.appService.logout();
